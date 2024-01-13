@@ -4,7 +4,7 @@
 
 2. (optional) You can add these urls when prompted or use your own
 
-![Alt text](image.png)
+![Alt text](assets/image.png)
 
 3. After downloading credentials.json, it should look like this -
 
