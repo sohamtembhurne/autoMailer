@@ -12,6 +12,8 @@ const getOrCreateLabel = async (auth) => {
     const labelExists = labels.some((label) => label.name === "autoReplies");
 
     if (!labelExists) {
+
+        //create label
         const createdLabel = await gmail.users.labels.create({
             userId: "me",
             requestBody: {
@@ -26,9 +28,10 @@ const getOrCreateLabel = async (auth) => {
 
         return createdLabel.data.id;
     } else {
-        console.log("Label exists");
+        console.log("Label already exists");
     }
 
+    //Find ID of label since it already exists
     const labelId = labels.find((label) => label.name === "autoReplies").id;
     return labelId;
 }
@@ -36,16 +39,17 @@ const getOrCreateLabel = async (auth) => {
 const addLabel = async (auth, labelId, msgId) => {
     const gmail = google.gmail({ version: "v1", auth });
 
+    //Add label to the mail
     gmail.users.messages.modify({
         userId: "me",
         id: msgId,
         requestBody: {
-            addLabelIds: [labelId, "INBOX"],
+            addLabelIds: [labelId],
             removeLabelIds: ["UNREAD"]
         },
     });
 
-    console.log("Label added\n")
+    console.log("Label added")
 }
 
 module.exports = { getOrCreateLabel, addLabel };

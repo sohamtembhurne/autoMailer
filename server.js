@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const { autoMail } = require('./src/app');
+const { autoMailApp } = require('./src/app');
 
 const app = express();
 const port = 7000;
@@ -15,7 +15,7 @@ app.listen(port, () => {
 });
 
 //Run the function on start
-autoMail();
+autoMailApp();
 
 //Run at random intervals of 45 to 120 seconds
-setInterval(autoMail, (Math.random() * (120 - 45 + 1) + 45) * 1000);
+setInterval(autoMailApp, (Math.random() * (120 - 45 + 1) + 45) * 1000);

@@ -1,12 +1,15 @@
-const { authorize } = require('../controllers/authController');
-const { getUnreadMessages, sendReply } = require('../controllers/messageController')
+const { authorize } = require('./controllers/authController');
+const { getUnreadMessages, sendReply } = require('./controllers/messageController')
 
-const autoMail = async () => {
+const autoMailApp = async () => {
+    console.log("Running scheduled autoMailer...")
     const auth = await authorize();
 
     try {
         const msgs = await getUnreadMessages(auth);
         await sendReply(auth, msgs);
+        console.log("AutoMail Run Over")
+        console.log("------------------")
 
     } catch (err) {
         console.error(err);
@@ -14,5 +17,5 @@ const autoMail = async () => {
 };
 
 module.exports = {
-    autoMail
+    autoMailApp
 }
