@@ -33,10 +33,6 @@ const sendReply = async (auth, msgs) => {
                 id: msg.id,
             })
 
-            // const obj = JSON.stringify(mail.data, null, 2);
-            // console.log(obj);
-            // console.log(mail.data.payload.headers);
-
             //extract from and subject from message
             const { value: subject } = mail.data.payload.headers.find(
                 (obj) => obj.name.toLowerCase() === "subject"

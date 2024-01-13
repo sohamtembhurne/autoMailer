@@ -4,7 +4,7 @@ const { google } = require('googleapis');
 const getOrCreateLabel = async (auth) => {
     const gmail = google.gmail({ version: "v1", auth });
 
-    //Check labels
+    //get list of labels
     let res = await gmail.users.labels.list({ userId: "me" });
     let labels = res.data.labels;
 
@@ -23,7 +23,7 @@ const getOrCreateLabel = async (auth) => {
             },
         });
 
-        console.log(createdLabel);
+        // console.log(createdLabel);
         console.log("Label Created");
 
         return createdLabel.data.id;

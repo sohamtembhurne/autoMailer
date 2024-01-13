@@ -5,11 +5,12 @@ const { autoMailApp } = require('./src/app');
 const app = express();
 const port = 7000;
 
-
+//GET '/' Route
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, '/index.html'));
 });
 
+//Listen Port
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
